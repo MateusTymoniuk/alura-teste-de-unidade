@@ -6,6 +6,9 @@ public class Lance {
 	private double valor;
 	
 	public Lance(Usuario usuario, double valor) {
+		if(valor <= 0) {
+			throw new IllegalArgumentException("O valor do lance é inválido!");
+		}
 		this.usuario = usuario;
 		this.valor = valor;
 	}

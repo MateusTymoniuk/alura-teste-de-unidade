@@ -7,17 +7,13 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.com.caelum.leilao.builder.LeilaoBuilder;
 import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Leilao;
 import br.com.caelum.leilao.dominio.Usuario;
-import br.com.caelum.leilao.servico.Avaliador;
 
 public class AvaliadorTest {
 
@@ -34,21 +30,6 @@ public class AvaliadorTest {
 		criaAvaliador();
 	}
 	
-	@After
-	public void finaliza() {
-		System.out.println("fim");
-	}
-	
-	@BeforeClass
-	public static void testandoBeforeClass() {
-		System.out.println("before class");
-	}
-
-	@AfterClass
-	public static void testandoAfterClass() {
-		System.out.println("after class");
-	}
-
 	@Test
 	public void deveEntenderLancesEmOrdemCrescente() {
 		Leilao leilao = new LeilaoBuilder().para("Playstation 3 novo")
@@ -119,8 +100,7 @@ public class AvaliadorTest {
 
 		leiloeiro.avalia(leilao);
 
-		assertEquals(1000.0, leiloeiro.getMaiorLance(), 0.00001);
-		assertEquals(1000.0, leiloeiro.getMenorLance(), 0.00001);
+		assertThat(leiloeiro.getMenorLance(), equalTo(leiloeiro.getMaiorLance()));
 	}
 
 	@Test
@@ -138,9 +118,9 @@ public class AvaliadorTest {
 		List<Lance> maiores = leiloeiro.getTresMaiores();
 		assertThat(maiores.size(), equalTo(3));
 		assertThat(maiores, hasItems(
-                new Lance(maria, 400), 
-                new Lance(joao, 300),
-                new Lance(maria, 200)
+                new Lance(maria, 400.0), 
+                new Lance(joao, 300.0),
+                new Lance(maria, 200.0)
         ));
 	}
 
@@ -185,7 +165,7 @@ public class AvaliadorTest {
 	}
 
 	@Test(expected=RuntimeException.class)
-	public void trataLeilaoSemLance() {
+	public void naoDeveAvaliarLeilaoSemLance() {
 		Leilao leilao = new LeilaoBuilder().para("Playstation 3 novo")
 				.build();
 
