@@ -1,4 +1,4 @@
-package br.caelum.leilao.builder;
+package br.com.caelum.leilao.builder;
 
 import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Leilao;

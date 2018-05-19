@@ -1,4 +1,4 @@
-package br.caelum.leilao.servico;
+package br.com.caelum.leilao.servico;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -13,7 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.caelum.leilao.builder.LeilaoBuilder;
+import br.com.caelum.leilao.builder.LeilaoBuilder;
 import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Leilao;
 import br.com.caelum.leilao.dominio.Usuario;
